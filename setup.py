@@ -42,7 +42,7 @@ requirements = [
     'scipy',
     'requests',
     'tornado',
-    'pyzmq',
+    # 'pyzmq',
     'six',
     'jsonpatch',
     'websocket-client',
@@ -61,6 +61,7 @@ setup(
     description='A tool for visualizing live, rich data for Torch and Numpy',
     long_description=readme,
     license='Apache-2.0',
+    long_description_content_type="text/markdown",
 
     # Package info
     packages=['visdom'],
