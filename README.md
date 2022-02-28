@@ -1,4 +1,31 @@
 
+
+# Diffs to Master: 
+
+**PRs**:
+- [Custom Machine- & Project-specific Styles #842](https://github.com/fossasia/visdom/pull/842)
+- [update .gitignore to match current static file downloads #841](https://github.com/fossasia/visdom/pull/841)
+- [Compare everything with everything else #840](https://github.com/fossasia/visdom/pull/840)
+- [Enable Live-Edits of any Property of any Plot #837](https://github.com/fossasia/visdom/pull/837)
+- [Frontend rc-tree now defaults to start all children collapsed. #668](https://github.com/fossasia/visdom/pull/668)
+
+
+# Merged: 
+
+**PRs**:
+- [Fix Relative Env Path Errors #839](https://github.com/fossasia/visdom/pull/839)
+- [Enable Doubleclick on Resize Handle to Reset Window Size #838](https://github.com/fossasia/visdom/pull/838)
+- [Fix Bugs in UI due to update of Multilevel-Arrays #836](https://github.com/fossasia/visdom/pull/836)
+- [Apply webpack best Practice for better Development #835](https://github.com/fossasia/visdom/pull/835)
+- [Adding Update Function to Heatmap (in accordance to vis.line) #834](https://github.com/fossasia/visdom/pull/834)
+- [Added missing -eager_data_loading flag to README.md #833](https://github.com/fossasia/visdom/pull/833)
+- [Lazy Loading of Data #832](https://github.com/fossasia/visdom/pull/832)
+
+
+
+-----
+
+
 # **Visdom**
 
 ![visdom_big](docs/images/visdom.png "visdom_big")
