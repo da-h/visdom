@@ -1392,7 +1392,7 @@ class App extends React.Component {
               inputValue={null}
               value={this.state.envIDs}
               treeData={env_options2}
-              treeDefaultExpandAll
+              //treeDefaultExpandAll
               treeNodeFilterProp="title"
               treeDataSimpleMode={this.state.treeDataSimpleMode}
               treeCheckable
