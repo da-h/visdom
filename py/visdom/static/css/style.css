@@ -283,3 +283,13 @@ doesn't override our desire to make them non-interactable */
 button[title="properties"].active > .glyphicon {
     color: red;
 }
+
+button[title="smooth lines"] {
+    font-size: 200%;
+    margin-top: -1px;
+    font-weight: bold;
+}
+
+button[title="smooth lines"].active {
+    color: red;
+}
