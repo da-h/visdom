@@ -1982,7 +1982,13 @@ def start_server(port=DEFAULT_PORT, hostname=DEFAULT_HOSTNAME,
 
 
 def main(print_func=None):
+    # get version
+    here = os.path.abspath(os.path.dirname(__file__))
+    with open(os.path.join(here, 'VERSION')) as version_file:
+        version = version_file.read().strip()
+
     parser = argparse.ArgumentParser(description='Start the visdom server.')
+    parser.add_argument('-version', action='version', version='%(prog)s '+version)
     parser.add_argument('-port', metavar='port', type=int,
                         default=DEFAULT_PORT,
                         help='port to run the server on.')
