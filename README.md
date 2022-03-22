@@ -189,6 +189,7 @@ The following options can be provided to the server:
 Requires `-enable_login`.
 9. `-bind_local` : Flag to make the server accessible only from localhost.
 10. `-eager_data_loading` : By default visdom loads environments lazily upon user request. Setting this flag lets visdom pre-fetch all environments upon startup.
+11. `-version` : Shows the project version & exit.
 
 When `-enable_login` flag is provided, the server asks user to input credentials using terminal prompt. Alternatively,
 you can setup `VISDOM_USE_ENV_CREDENTIALS` env variable, and then provide your username and password via
