@@ -1,7 +1,7 @@
 import numpy as np
 
 def plot_surface_basic(viz, env, withnames=False):
-    columnnames = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'] if withnames else None
+    columnnames = ['X', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'] if withnames else None
     rownames = ['y1', 'y2', 'y3', 'y4', 'y5'] if withnames else None
     return viz.heatmap(
         X=np.outer(np.arange(1, 6), np.arange(1, 11)),
@@ -88,7 +88,7 @@ def plot_surface_replace_withnames(viz, env, args):
 def plot_surface_contour(viz, env, args):
     x = np.tile(np.arange(1, 101), (100, 1))
     y = x.transpose()
-    X = np.exp((((x - 50) ** 2) + ((y - 50) ** 2)) / -(20.0 ** 2))
+    X = np.exp((((x - 25) ** 2) + ((y - 25) ** 2)) / -(20.0 ** 2))
     viz.contour(X=X, opts=dict(colormap='Viridis'), env=env)
 
 # surface

@@ -7,7 +7,7 @@ def plot_line_basic(viz, env, args):
 
 def plot_line_multiple(viz, env, args):
     title = args[0] if len(args) > 0 else None
-    Y = np.linspace(-5, 5, 100)
+    Y = np.linspace(0, 10, 100)
     viz.line(
         Y=np.column_stack((Y * Y, np.sqrt(Y + 5))),
         X=np.column_stack((Y, Y)),
