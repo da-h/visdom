@@ -127,6 +127,8 @@ class Pane extends React.Component {
       );
     }
 
+    var a = {
+
     if (this.props.barwidgets) {
       if (Array.isArray(this.props.barwidgets))
         barwidgets = barwidgets.concat(this.props.barwidgets);
