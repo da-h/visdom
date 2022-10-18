@@ -36,6 +36,7 @@
     "test:visual": "cypress run --spec './cypress/integration/screenshots.js'",
     "test": "cypress run --config ignoreTestFiles=*.init.js",
     "eslint": "eslint js/.",
+    "eslint:github-action": "eslint js/.",
     "eslint:fix": "eslint --fix --ext .js,.jsx js/"
   },
   "dependencies": {
