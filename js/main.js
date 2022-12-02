@@ -65,6 +65,7 @@ if (ACTIVE_ENV !== '') {
 // to move state out of the app to a standalone store.
 class App extends React.Component {
   state = {
+    smalltest: false,
     connected: false,
     readonly: false,
     sessionID: null,
