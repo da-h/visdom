@@ -875,6 +875,13 @@ function App() {
     postForEnv(selection.envIDs);
   }, [sessionInfo]);
 
+  // ask server for envs on component mount
+  // TODO: this seems to be a duplicate,
+  //       but is needed to ensure layouts are loaded correctly
+  useEffect(() => {
+    postForEnv(selection.envIDs);
+  }, []);
+
   // make sure resize event listener is registered
   useEffect(() => {
     // componentDidMount
