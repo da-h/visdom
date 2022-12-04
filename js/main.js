@@ -885,16 +885,16 @@ function App() {
   if (!mounted) updateDimensions();
 
   // ask server for envs after registration succeeded
-  useEffect(() => {
-    postForEnv(selection.envIDs);
-  }, [sessionInfo]);
+  // useEffect(() => {
+  //   postForEnv(selection.envIDs);
+  // }, [sessionInfo]);
 
   // ask server for envs on component mount
   // TODO: this seems to be a duplicate,
   //       but is needed to ensure layouts are loaded correctly
-  useEffect(() => {
-    postForEnv(selection.envIDs);
-  }, []);
+  // useEffect(() => {
+  //   postForEnv(selection.envIDs);
+  // }, []);
 
   // make sure resize event listener is registered
   useEffect(() => {
@@ -913,6 +913,7 @@ function App() {
 
   //componentDidUpdate
   useEffect(() => {
+    console.log('componentDidUpdate', !mounted.current, sessionInfo);
     if (!mounted && sessionInfo.id) {
       setMounted(true);
       if (selection.envIDs.length > 0) {
@@ -925,11 +926,13 @@ function App() {
         });
         postForEnv(['main']);
       }
+    } else {
+      postForEnv(selection.envIDs);
     }
 
     // Bootstrap tooltips need some encouragement
     $('#clear-button').attr('data-original-title', 'Clear Current Environment');
-  }, []);
+  }, [mounted, sessionInfo]);
 
   // relayout on windowSize changes
   useEffect(() => {
