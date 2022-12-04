@@ -114,6 +114,7 @@ function App() {
   const colWidth = () =>
     (windowSize.width - MARGIN * (windowSize.cols - 1) - MARGIN * 2) /
     windowSize.cols;
+  console.log(windowSize.width);
 
   // translate pixels -> RGL grid coordinates
   const p2w = (w) => (w + MARGIN) / (colWidth() + MARGIN);
@@ -229,8 +230,10 @@ function App() {
       }
 
       newLayout.push(paneLayout);
+      console.log('new window', paneLayout, p2w(newPane.width));
     } else {
       let currLayout = getLayoutItem(newLayout, newPane.id);
+      console.log('old window', currLayout.w, p2w(newPane.width));
       if (newPane.width) currLayout.w = p2w(newPane.width);
       if (newPane.height) currLayout.h = Math.ceil(p2h(newPane.height + 14));
       if (newPane.content && newPane.content.caption) currLayout.h += 1;
@@ -469,6 +472,8 @@ function App() {
   const postForEnv = (envIDs) => {
     // This kicks off a new stream of events from the socket so there's nothing
     // to handle here. We might want to surface the error state.
+    // console.log('post', envIDs);
+    // debugger;
     if (envIDs.length == 1) {
       $.post(
         correctPathname() + 'env/' + envIDs[0],
