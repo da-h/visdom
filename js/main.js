@@ -667,8 +667,11 @@ function App() {
     setStoreData({
       ...storeData,
       panes: newPanes,
-      layout: newLayout,
     });
+    // TODO this is very non-conventional react, someday it shall be fixed but
+    // for now it's important to fix relayout grossness
+    storeData.panes = newPanes;
+    updateLayout(newLayout);
   };
 
   const toggleOnlineState = () => {
@@ -681,6 +684,9 @@ function App() {
 
   const updateLayout = (layout) => {
     setStoreData({ ...storeData, layout: layout });
+    // TODO this is very non-conventional react, someday it shall be fixed but
+    // for now it's important to fix relayout grossness
+    storeData.layout = layout;
   };
   useEffect(() => {
     storeData.layout.map((playout) => {
@@ -715,6 +721,9 @@ function App() {
       ...selection,
       layoutID: layoutID,
     });
+    // TODO this is very non-conventional react, someday it shall be fixed but
+    // for now it's important to fix relayout grossness
+    selection.layoutID = layoutID;
     if (selection.layoutID !== DEFAULT_LAYOUT) {
       relayout();
       relayout();
