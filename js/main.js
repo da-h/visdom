@@ -91,20 +91,20 @@ function App() {
   const [showEnvModal, setShowEnvModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
   const [focusedPaneID, setFocusedPaneID] = useState(null);
+  const [filterString, setFilterString] = useState(
+    localStorage.getItem('filter') || ''
+  );
   const [selection, setSelection] = useState({
     envID: use_env,
     envIDs: use_envs,
     layoutID: DEFAULT_LAYOUT,
   });
-  const [filterString, setFilterString] = useState(
-    localStorage.getItem('filter') || ''
-  );
 
   // non-triggering state variables
-  const consistent_pane_copy = useRef({});
   const _bin = useRef(null);
   const _timeoutID = useRef(null);
   const _pendingPanes = useRef([]);
+  const consistent_pane_copy = useRef({});
 
   // --------------------- //
   // grid helper functions //
