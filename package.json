@@ -34,6 +34,7 @@
     "test:visual": "cypress run --spec './cypress/integration/screenshots.js'",
     "test": "cypress run --config ignoreTestFiles=*.init.js",
     "lint": "eslint js/.",
+    "lint:edited": "eslint --color $(git diff --name-only HEAD | grep -E '^js/.*.(js|jsx)$' | xargs)",
     "lint:fix": "eslint --fix --ext .js,.jsx js/"
   },
   "dependencies": {

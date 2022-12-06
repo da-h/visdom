@@ -18,8 +18,12 @@ jobs:
           node-version: 16
     - name: "Install Dependencies"
       run: npm install
+    - name: "Stage changed files"
+      run: |
+        git fetch origin $GITHUB_BASE_REF
+        git reset origin/$GITHUB_BASE_REF
     - name: "Linter Check (ESLint)"
-      run: npm run lint
+      run: npm run lint:edited
 
   lint-py:
     name: "Python Linter Check"
