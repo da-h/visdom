@@ -119,15 +119,20 @@ basic_examples.forEach( (setting) => {
       })
 
       it('Close Pane', () => {
-          cy
-            .get('.layout .react-grid-item').first()
+          // close first pane
+          cy.get('.layout .react-grid-item')
+            .first()
             .find('button[title="close"]')
-            .click()
+            .click();
 
-          cy
-            .get('.layout .react-grid-item')
-            .should('have.length', 3);
-      })
+          // list should contain one pane less
+          cy.get('.layout .react-grid-item').should('have.length', 3);
+
+          // last pane should move up
+          cy.get('.layout .react-grid-item')
+            .last()
+            .should('have.css', 'transform', 'matrix(1, 0, 0, 1, 10, 10)');
+          })
     })
 
 });
