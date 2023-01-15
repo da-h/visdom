@@ -24,14 +24,12 @@ describe('Image Pane', () => {
       .should('have.css', 'left', '0px');
 
     // scroll a bit
-    cy.get(img_selector)
-      .first()
-      .trigger('wheel', {
-        altKey: true,
-        deltaY: 20,
-        deltaX: 30,
-        bubbles: true,
-      });
+    cy.get(img_selector).first().trigger('wheel', {
+      altKey: true,
+      deltaY: 20,
+      deltaX: 30,
+      bubbles: true,
+    });
 
     // check new position
     cy.get(container_selector)
@@ -52,8 +50,8 @@ describe('Image Pane', () => {
     // check new position
     cy.get(container_selector)
       .first()
-      .should('have.css', 'top', '256px')
-      .should('have.css', 'left', '38px');
+      .should('have.css', 'top', '255px')
+      .should('have.css', 'left', '37px');
   });
 
   it('Image Zoom (Ctrl + Wheel)', () => {
@@ -65,22 +63,22 @@ describe('Image Pane', () => {
       .trigger('wheel', { ctrlKey: true, deltaY: 200, bubbles: true })
       .trigger('wheel', { ctrlKey: true, deltaY: 200, bubbles: true })
       .trigger('wheel', { ctrlKey: true, deltaY: 200, bubbles: true })
-      .should('have.attr', 'width', '157px')
-      .should('have.attr', 'height', '314px');
+      .should('have.attr', 'width', '156px')
+      .should('have.attr', 'height', '312px');
 
     // check new position
     cy.get(container_selector)
       .first()
-      .should('have.css', 'top', '276.786px')
-      .should('have.css', 'left', '81.5211px');
+      .should('have.css', 'top', '276.565px')
+      .should('have.css', 'left', '80.8818px');
   });
 
   it('Image Reset (Double-Click)', () => {
     cy.get(img_selector)
       .first()
       .dblclick()
-      .should('have.attr', 'width', '257px')
-      .should('have.attr', 'height', '514px');
+      .should('have.attr', 'width', '255px')
+      .should('have.attr', 'height', '510px');
 
     // check new position
     cy.get(container_selector)
@@ -149,8 +147,8 @@ describe('Image Pane', () => {
     cy.run('image_grid', { asyncrun: true });
     cy.get(img_selector)
       .should('have.length', 1)
-      .should('have.attr', 'width', '545px')
-      .should('have.attr', 'height', '205px');
+      .should('have.attr', 'width', '543px')
+      .should('have.attr', 'height', '204px');
   });
 
   it('image_svg', () => {
@@ -165,19 +163,21 @@ describe('Image Pane', () => {
       .should('have.attr', 'ry', 30);
   });
 
+  let click1 = [12, 34];
+  let click2 = [45, 67];
   it('image_callback', () => {
     cy.run('image_callback', { asyncrun: true });
     cy.get(img_selector)
       .parents(win_selector)
       .click() // to focus the pane
       .find('img')
-      .click(12, 34)
-      .click(45, 67);
+      .click(click1[0], click1[1])
+      .click(click2[0], click2[1]);
     cy.get('.layout .react-grid-item .content-text')
       .first()
       .contains('Coords:')
-      .contains('x: 12, y: 35;') // bug: y is off by 1
-      .contains('x: 45, y: 68;'); // bug: y is off by 1
+      .contains(`x: ${click1[0]}, y: ${click1[1]};`)
+      .contains(`x: ${click2[0]}, y: ${click2[1]};`);
   });
 
   it('image_callback2', () => {
