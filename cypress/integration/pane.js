@@ -16,7 +16,7 @@ const basic_examples = [
     ["Matplotlib Plot", "misc_plot_matplot"],
     ["Latex Plot", "misc_plot_latex"],
     ["Video Pane", "misc_video_tensor"],
-    // ["Audio Pane", "misc_audio_basic"], // bug: disabled due to inconsistent resize
+    ["Audio Pane", "misc_audio_basic"],
     ["Properties Pane", "properties_basic"]
 ];
 
@@ -60,34 +60,31 @@ basic_examples.forEach( (setting) => {
       })
 
 
-      let height, width, height2, width2, height3, width3, height4, width4;
-      [ height2, width2 ] = [ 425, 321 ]; // resize to
-      [ height3, width3 ] = [ 410, 307]; // grid-corrected size
-      if (basic_example == "text_basic") {
+      let height, width, height2, width2, height3, width3;
+
+      // default pane size
+      if (basic_example == "text_basic")
           [ height, width ] = [ 290, 243 ];
-          [ height4, width4 ] = [ height, width];
-      } else if (basic_example == "image_basic") {
+      else if (basic_example == "image_basic")
           [ height, width ] = [ 545, 256 ];
-          [ height4, width4 ] = [ 624, width]; // this is an obvious bug in the ui
-      } else if (basic_example == "misc_plot_matplot") {
+      else if (basic_example == "misc_plot_matplot")
           [ height, width ] = [ 500, 622 ];
-          [ height4, width4 ] = [ 592, width];
-      } else if (basic_example == "plot_special_graph") {
+      else if (basic_example == "plot_special_graph")
           [ height, width ] = [ 515, 500 ];
-          [ height4, width4 ] = [ 610, width];
-      } else if (basic_example == "misc_video_tensor") {
+      else if (basic_example == "misc_video_tensor")
           [ height, width ] = [ 290, 243 ];
-          [ height4, width4 ] = [ 290, width];
-      } else if (basic_example == "misc_audio_basic") {
+      else if (basic_example == "misc_audio_basic")
           [ height, width ] = [ 95, 330 ];
-          [ height4, width4 ] = [ 410, 307]; // also a bug in the ui
-      } else if (basic_example == "properties_basic") {
+      else if (basic_example == "properties_basic")
           [ height, width ] = [ 290, 243 ];
-          [ height4, width4 ] = [ height, width];
-      } else {
+      else
           [ height, width ] = [ 350, 370];
-          [ height4, width4 ] = [ height, width];
-      }
+
+      // resize to
+      [ height2, width2 ] = [ 425, 321 ];
+
+      // grid-corrected size (pane gets snapped to)
+      [ height3, width3 ] = [ 410, 307 ];
 
       it('Check Pane Size', () => {
           cy
@@ -114,8 +111,8 @@ basic_examples.forEach( (setting) => {
             .find('.react-resizable-handle')
             .dblclick()
             .get('.layout .react-grid-item').first()
-            .should('have.css', 'height', height4 + 'px')
-            .should('have.css', 'width', width4 + 'px')
+            .should('have.css', 'height', height + 'px')
+            .should('have.css', 'width', width + 'px')
       })
 
       it('Close Pane', () => {

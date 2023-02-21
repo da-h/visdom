@@ -16,7 +16,7 @@ const DEFAULT_HEIGHT = 400;
 const DEFAULT_WIDTH = 300;
 
 function ImagePane(props) {
-  const { title, type, selected, width, height, appApi } = props;
+  const { id, title, type, selected, width, height, appApi } = props;
   var { content } = props;
 
   // state varibles
@@ -160,17 +160,23 @@ function ImagePane(props) {
           event.preventDefault();
           break;
         case 'keyup':
-          appApi.sendPaneMessage({
-            event_type: 'KeyPress',
-            key: event.key,
-            key_code: event.keyCode,
-          });
+          appApi.sendPaneMessage(
+            {
+              event_type: 'KeyPress',
+              key: event.key,
+              key_code: event.keyCode,
+            },
+            id
+          );
           break;
         case 'click':
-          appApi.sendPaneMessage({
-            event_type: 'Click',
-            image_coord: mouseLocation,
-          });
+          appApi.sendPaneMessage(
+            {
+              event_type: 'Click',
+              image_coord: mouseLocation.current,
+            },
+            id
+          );
           break;
       }
     };
@@ -179,7 +185,7 @@ function ImagePane(props) {
     return function cleanup() {
       EventSystem.unsubscribe('global.event', onEvent);
     };
-  }, [mouseLocation]);
+  }, []);
 
   // image size/pos computation
   // --------------------------
