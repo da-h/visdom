@@ -11,6 +11,6 @@ import sys
 assert sys.version_info[0] >= 3, "To use visdom with python 2, downgrade to v0.1.8.9"
 
 if __name__ == "__main__":
-    from visdom.server.run_server import download_scripts_and_run
+    from visdom.server.run_server import main
 
-    download_scripts_and_run()
+    main()

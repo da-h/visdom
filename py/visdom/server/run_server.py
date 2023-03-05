@@ -143,7 +143,19 @@ def main(print_func=None):
         action="store_true",
         help="Load data from filesystem when starting server (and not lazily upon first request).",
     )
+    parser.add_argument(
+        "-initonly",
+        default=False,
+        action="store_true",
+        help="downloads dependencies required for running visdom.",
+    )
     FLAGS = parser.parse_args()
+
+    # ensure dependencies are present locally
+    download_scripts()
+
+    if FLAGS.initonly:
+        return
 
     # Process base_url
     base_url = FLAGS.base_url if FLAGS.base_url != DEFAULT_BASE_URL else ""
@@ -231,10 +243,5 @@ def main(print_func=None):
     )
 
 
-def download_scripts_and_run():
-    download_scripts()
-    main()
-
-
 if __name__ == "__main__":
-    download_scripts_and_run()
+    main()
