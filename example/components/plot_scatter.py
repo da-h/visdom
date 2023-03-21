@@ -104,6 +104,35 @@ def plot_scatter_3d(viz, env, args):
         env=env
     )
 
+def plot_scatter_3d_append_byname(viz, env, args):
+    viz.scatter(np.random.rand(10, 3), win='test', name='p1', env=env)
+    viz.scatter(np.random.rand(10, 3) + 3, win='test', name='p2', update='append', env=env)
+
+def plot_scatter_3d_append(viz, env, args):
+    num = 5
+    win = viz.scatter(
+        X=np.random.rand(num, 3),
+        Y=np.random.randint(1, 3, (num,)),
+        opts=dict(
+            markersize=10,
+            legend=['label 1', 'label 2']
+        ),
+        env=env
+    )
+
+    num2 = 5
+    viz.scatter(
+        X=np.random.rand(num2, 3),
+        Y=np.random.randint(1, 3, (num2,)),
+        opts=dict(
+            title='update',
+            legend=['label 1', 'label 2']
+        ),
+        env=env,
+        update='append',
+        win=win)
+
+
 # 2D scatterplot with custom intensities (red channel)
 def plot_scatter_custom_marker(viz, env, args):
     title = args[0] if len(args) > 0 else None

@@ -22,6 +22,8 @@ export const all_screenshots = [
   'plot_scatter_update_opts',
   'plot_scatter_append',
   // 'plot_scatter_3d', // disabled due to webgl
+  // 'plot_scatter_3d_append', // disabled due to webgl
+  // 'plot_scatter_3d_append_byname' // disabled due to webgl
   'plot_scatter_custom_marker',
   'plot_scatter_custom_colors',
   'plot_scatter_add_trace',
