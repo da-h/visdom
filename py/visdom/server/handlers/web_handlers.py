@@ -289,13 +289,15 @@ class UpdateHandler(BaseHandler):
         for n, idx in enumerate(idxs):
             if all(math.isnan(i) or i is None for i in new_data[n]["x"]):
                 continue
+
             # handle data for plotting
-            for axis in ["x", "y"]:
-                pdata[idx][axis] = (
-                    (pdata[idx][axis] + new_data[n][axis])
-                    if append
-                    else new_data[n][axis]
-                )
+            for axis in ["x", "y", "z"]:
+                if axis in pdata[idx]:
+                    pdata[idx][axis] = (
+                        (pdata[idx][axis] + new_data[n][axis])
+                        if append
+                        else new_data[n][axis]
+                    )
 
             # handle marker properties
             if "marker" not in new_data[n]:
