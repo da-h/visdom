@@ -165,7 +165,6 @@ def update_window(p, args):
         pdata = p["content"]["data"]
         for i, d in enumerate(pdata):
             d["name"] = opts["legend"][i]
-    p["version"] += 1
     return p
 
 

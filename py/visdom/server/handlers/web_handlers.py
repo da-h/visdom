@@ -124,6 +124,7 @@ class UpdateHandler(BaseHandler):
         old_p = copy.deepcopy(p)
         p = UpdateHandler.update(p, args)
         p["contentID"] = get_rand_id()
+        p["version"] = p.get("version", 1) + 1
         # TODO: make_patch isn't high performance.
         # If bottlenecked we should build the patch ourselves.
         patch = jsonpatch.make_patch(old_p, p)
@@ -354,6 +355,7 @@ class UpdateHandler(BaseHandler):
             return
 
         p, diff_packet = UpdateHandler.update_packet(p, args)
+
         # send the smaller of the patch and the updated pane
         if len(stringify(p)) <= len(stringify(diff_packet)):
             broadcast(handler, p, eid)
@@ -363,7 +365,6 @@ class UpdateHandler(BaseHandler):
                 "win": args["win"],
                 "env": eid,
                 "content": diff_packet,
-                "version": p.get("version", 1),
             }
             broadcast(handler, broadcast_packet, eid)
         handler.write(p["id"])
